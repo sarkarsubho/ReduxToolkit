@@ -1,11 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const Statues= Object.freeze({
+    IDEL:"idel",
+    ERROR:"error",
+    LOADING:"loading"
+})
+
 const cartSlice=createSlice({
-    name:"cart",
-    initialState:[],
+    name:"product",
+    initialState:{
+        data:[],
+        status: Statues.IDEL
+    },
     reducers:{
-        add(state,action){
-            state.push(action.payload)
+        setProduct(state,action){
+
+            state.data=action.payload
         },
         remove(state,action){
             return state.filter(item=>item.id !== action.payload)
