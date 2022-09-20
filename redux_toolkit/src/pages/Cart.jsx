@@ -19,7 +19,7 @@ export const Cart = () => {
        {
         cartItems.map(product=>{
           return <div className="cart" key={product.id}>
-          <img src={product.image} alt="product image"></img>
+          <img src={product.image} alt="product pic"></img>
           <h4> {product.title}</h4>
           <p> Price :- {product.price}</p>
           <button onClick={()=>handleRemove(product.id)}> Remove</button>

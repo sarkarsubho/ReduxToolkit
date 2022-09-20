@@ -5,7 +5,7 @@ import productSlice from "./productSlice";
 const store =configureStore({
     reducer:{
      cart: cartSlice,
-     product:productSlice
+     products:productSlice
     }
 })
 // no need to configer devtool it is alrady inBuild configered .

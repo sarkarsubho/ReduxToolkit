@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./nav.css";
 import {add} from "../Store/cartSlice"
-import { useDispatch } from "react-redux";
-import { fetchProduct } from "../Store/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProduct, Statues } from "../Store/productSlice";
 
 export const Products = () => {
     const dispatch=useDispatch();
-    const [products,setProducts]=useState([]);
+    // const [products,setProducts]=useState([]);
+    const {data,status} =useSelector(state=>state.products)
     const handleAdd=(product)=>{
        dispatch(add(product))
     }
@@ -21,12 +22,19 @@ export const Products = () => {
         
         // fetchProduct();
     },[dispatch])
+
+    if (status === Statues.LOADING){
+        return <p>Loaging...</p>
+    }
+    if (status === Statues.ERROR){
+        return <p>Something Went Wrong...</p>
+    }
   return <div className="products">
 
     {
-        products.map(product=>{
+        data.map(product=>{
             return <div className="cart" key={product.id}>
-                <img src={product.image} alt="product image"></img>
+                <img src={product.image} alt="product pic"></img>
                 <h4> {product.title}</h4>
                 <p> Price :- {product.price}</p>
                 <button onClick={()=>handleAdd(product)}> Add to Cart</button>
