@@ -6,7 +6,7 @@ const Statues= Object.freeze({
     LOADING:"loading"
 })
 
-const cartSlice=createSlice({
+const productSlice=createSlice({
     name:"product",
     initialState:{
         data:[],
@@ -17,11 +17,27 @@ const cartSlice=createSlice({
 
             state.data=action.payload
         },
-        remove(state,action){
-            return state.filter(item=>item.id !== action.payload)
-        }
+       setStatus(state,action){
+        state.status=action.payload
+       }
     }
 });
 
-export const {add,remove}=cartSlice.actions;
-export default cartSlice.reducer;
+export const {setProduct,setStatus}=productSlice.actions;
+export default productSlice.reducer;
+
+export function fetchProduct(){
+    return async function fetchProductThunk(dispatch,getState){
+        dispatch(setStatus(Statues.LOADING))
+        try{
+            const res=await fetch(`https://fakestoreapi.com/products`);
+            let data= await res.json();
+            dispatch(setProduct(data));
+            dispatch(setStatus(Statues.IDEL))
+        }catch(er){
+             console.log(er);
+            dispatch(setStatus(Statues.ERROR))
+        
+        }
+    }
+}
