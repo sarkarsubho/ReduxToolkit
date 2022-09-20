@@ -1,0 +1,45 @@
+.nav{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+.navlink{
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: large;
+    font-weight: 500;
+}
+.logo{
+    font-size: x-large;
+    font-weight: 600;
+    color: blueviolet;
+}
+.products{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 30px;
+}
+img{
+    width: 180px;
+    height: 180px;
+}
+button{
+  border: none;
+  background:blueviolet;
+  color: white;
+  padding: 7px;
+  width: fit-content;
+  border-radius: 5px;
+  font-size: small;
+  cursor: pointer;
+}
+button:active{
+    opacity: 0.8;
+}
+.cart{
+    /* border: 1px solid lightblueviolet; */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
