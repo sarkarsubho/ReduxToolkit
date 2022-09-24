@@ -1,10 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice,PayloadAction} from "@reduxjs/toolkit";
+import { type } from "@testing-library/user-event/dist/type";
 
 export const Statues = Object.freeze({
   IDEL: "idel",
   ERROR: "error",
   LOADING: "loading",
 });
+
+
 
 const productSlice = createSlice({
   name: "product",
@@ -23,7 +26,7 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
     
-      .addCase(fetchProduct.pending, (state, action) => {
+      .addCase(fetchProduct.pending, (state, action:PayloadAction<[]>) => {
         state.status = Statues.LOADING;
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
@@ -36,7 +39,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { setProduct, setStatus } = productSlice.actions;
+// export const { setProduct, setStatus } = productSlice.actions;
 export default productSlice.reducer;
 
 //thunk
