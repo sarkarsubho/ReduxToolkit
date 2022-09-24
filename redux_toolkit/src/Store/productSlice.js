@@ -8,7 +8,7 @@ export const Statues = Object.freeze({
 });
 
 
-
+// For TS useDispatch and useSelector not work you have to made it type of TS type and the use ... 
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -26,7 +26,7 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
     
-      .addCase(fetchProduct.pending, (state, action:PayloadAction<[]>) => {
+      .addCase(fetchProduct.pending, (state, action) => {
         state.status = Statues.LOADING;
       })
       .addCase(fetchProduct.fulfilled, (state, action) => {
